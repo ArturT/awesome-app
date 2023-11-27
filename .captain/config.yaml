@@ -7,3 +7,8 @@ test-suites:
       command: 'bundle exec rspec {{ testFiles }}'
       globs:
         - 'spec/**/*_spec.rb'
+
+  awesome-app-abq:
+    command: bash -c "abq test --worker $ABQ_WORKER --run-id $CI_BUILD_ID --reporter rwx-v1-json=tmp/abq.json -- bundle exec rspec"
+    results:
+      path: tmp/abq.json
