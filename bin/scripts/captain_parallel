@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# How to user it:
+#
+# bin/scripts/captain_parallel 0 2 ci-build-1 1-commit-sha
+# bin/scripts/captain_parallel 1 2 ci-build-1 1-commit-sha
+
+export CI_NODE_TOTAL=${2:-2}
+export CI_NODE_INDEX=${1:-0}
+#export CI_BUILD_ID=$(openssl rand -base64 32)
+export CI_BUILD_ID=${3:-ci-build-id}
+#export COMMIT_HASH=$(ruby -e "require 'securerandom'; puts SecureRandom.hex")
+export COMMIT_HASH=${4-commit-sha}
+export BRANCH_NAME=master
+
+captain run --print-summary --suite-id="awesome-app" --who "John" --branch="$BRANCH_NAME" --sha="$COMMIT_HASH" --partition-index="$CI_NODE_INDEX" --partition-total="$CI_NODE_TOTAL" --title="$CI_BUILD_ID"
