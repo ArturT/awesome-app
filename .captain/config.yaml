@@ -1,5 +1,5 @@
 test-suites:
   awesome-app:
-    command: bundle exec rspec --format json --out tmp/rspec.json --format progress
+    command: bundle exec rspec --format json --out tmp/rspec.json --format documentation
     results:
       path: tmp/rspec.json
