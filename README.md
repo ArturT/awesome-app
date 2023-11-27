@@ -22,3 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# Testing
+
+# Captain
+
+```
+captain run awesome-app --print-summary
+```
