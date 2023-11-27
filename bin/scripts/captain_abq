@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# How to user it:
+#
+# bin/scripts/captain_abq 0 2 ci-build-1 1-commit-sha
+# bin/scripts/captain_abq 1 2 ci-build-1 1-commit-sha
+
+export CI_NODE_TOTAL=${2:-2}
+export CI_NODE_INDEX=${1:-0}
+#export CI_BUILD_ID=$(openssl rand -base64 32)
+export CI_BUILD_ID=${3:-ci-build-id}
+#export COMMIT_HASH=$(ruby -e "require 'securerandom'; puts SecureRandom.hex")
+export COMMIT_HASH=${4-commit-sha}
+export BRANCH_NAME=master
+
+export ABQ_WORKER=$CI_NODE_INDEX
+
+captain run awesome-app-abq --suite-id="awesome-app-abq" --who "John" --branch="$BRANCH_NAME" --sha="$COMMIT_HASH" --title="$CI_BUILD_ID"
