@@ -1,9 +1,9 @@
 describe 'something 2' do
   it do
-    expect(true).to be true
+    expect(true).to be false
   end
 
-  it do
+  xit do
     expect(true).to be true
   end
 
