@@ -1,0 +1,3 @@
+#!/bin/bash
+
+abq test -n 2 -- bundle exec rspec
